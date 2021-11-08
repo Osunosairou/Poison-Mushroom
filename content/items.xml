@@ -1,3 +1,3 @@
 <items gfxroot="gfx/items/" version="1">
-    <passive cache="" name="Poison Mushroom" description="DMG up, HP down" gfx="PoisonMushroom.png"/>  
+    <passive cache="damage" name="Poison Mushroom" description="DMG up, HP down" gfx="PoisonMushroom.png"/>  
 </items>
