@@ -3,7 +3,7 @@ local game = Game();
 local POISON_MUSH = Isaac.GetItemIdByName("Poison Mushroom");
 
 local hasMush = false;
-local MUSH_DMG_BONUS = (EntityPlayer:GetEffectiveMaxHearts() * 0.50);
+local MUSH_DMG_BONUS = (player:GetEffectiveMaxHearts() * 0.50);
 
 -- Checks if player has the item
 function PoisonMushroom:updateMush(player)
@@ -18,9 +18,9 @@ end
 -- Poison Mush functionality
 function PoisonMushroom:onUpdate(player)
     -- Spawns the item at the start of the run (debug only)
-    if game:GetFrameCount() == 1 then
+    if Game():GetFrameCount() == 1 then
         PoisonMushroom.HasPoisonMushroom = false
-        Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE,POISON_MUSH, Vector(320,300), Vector(0,0), nill)
+        Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE,PoisonMushroom.POISON_MUSH, Vector(320,300), Vector(0,0), nil)
     end
    
 end;
@@ -35,10 +35,10 @@ function PoisonMushroom:onCache(player, cacheFlag)
             player.Damage = player.Damage + MUSH_DMG_BONUS
         end
     end
-    if EntityPlayer:GetSoulHearts() >= 1 then
-        Isaac.GetPlayer(0):AddMaxHearts( (-1) * (EntityPlayer:GetEffectiveMaxHearts()), true)
+    if player:GetSoulHearts() >= 1 then
+        Isaac.GetPlayer(0):AddMaxHearts( (-1) * (player:AddMaxHearts()), true)
     else
-        Isaac.GetPlayer(0):AddMaxHearts( (-1) * (EntityPlayer:GetEffectiveMaxHearts() - 2), true)
+        Isaac.GetPlayer(0):AddMaxHearts( (-1) * (player:AddMaxHearts() - 2), true)
     end  
     
 end
