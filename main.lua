@@ -37,9 +37,9 @@ function PoisonMushroom:onCache(player, cacheFlag)
         end
     end
     if player:GetSoulHearts() >= 1 then
-        Isaac.GetPlayer(0):AddMaxHearts( (-1) * (player:GetEffectiveMaxHearts()), true)
+        Isaac:AddMaxHearts( (-1) * (player:GetEffectiveMaxHearts()), true)
     else
-        Isaac.GetPlayer(0):AddMaxHearts( (-1) * (player:GetEffectiveMaxHearts() - 2), true)
+        Isaac:AddMaxHearts( (-1) * (player:GetEffectiveMaxHearts() - 2), true)
     end  
     
 end
