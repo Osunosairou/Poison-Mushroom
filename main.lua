@@ -1,9 +1,8 @@
 local PoisonMushroom = RegisterMod("PoisonMushroom", 1);
 local game = Game();
 local POISON_MUSH = Isaac.GetItemIdByName("Poison Mushroom");
-
 local hasMush = false;
-local MUSH_DMG_BONUS = (player:GetEffectiveMaxHearts() * 0.50);
+
 
 -- Checks if player has the item
 function PoisonMushroom:updateMush(player)
@@ -30,15 +29,17 @@ PoisonMushroom:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, PoisonMushroom.o
 
 -- Status effects
 function PoisonMushroom:onCache(player, cacheFlag)
+    local MUSH_DMG_BONUS = (player:GetEffectiveMaxHearts() * 0.50);
+    
     if cacheFlag == CacheFlag.CACHE_DAMAGE then
-        if player:hasCollectible(POISON_MUSH) and not hasMush then
+        if player:hasCollectible(PoisonMushroom.POISON_MUSH) and not hasMush then
             player.Damage = player.Damage + MUSH_DMG_BONUS
         end
     end
     if player:GetSoulHearts() >= 1 then
-        Isaac.GetPlayer(0):AddMaxHearts( (-1) * (player:AddMaxHearts()), true)
+        Isaac.GetPlayer(0):AddMaxHearts( (-1) * (player:GetEffectiveMaxHearts()), true)
     else
-        Isaac.GetPlayer(0):AddMaxHearts( (-1) * (player:AddMaxHearts() - 2), true)
+        Isaac.GetPlayer(0):AddMaxHearts( (-1) * (player:GetEffectiveMaxHearts() - 2), true)
     end  
     
 end
