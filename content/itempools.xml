@@ -1,0 +1,8 @@
+<ItemPools>
+    <Pool Name="curse">
+    <Item Name="Poison Mushroom" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
+    </Pool>
+    <Pool Name="secret">
+    <Item Name="Poison Mushroom" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
+    </Pool>
+</ItemPools>
